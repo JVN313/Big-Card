@@ -17,8 +17,28 @@ def Draw():
 
 comp_pick = Draw()
 player_pick = Draw()
+playing = True
 
-if comp_pick.value > player_pick.value:
-    print("Comp Win")
-else:
-    print("Player Win")
+def Results():
+    print(f"Comp: {comp_pick.name}")
+    print(f"Player: {player_pick.name}")
+
+while playing:
+    if comp_pick.value > player_pick.value:
+        Results()
+        print()
+        print("Comp Win")
+    elif player_pick.value > comp_pick.value:
+        Results()
+        print()
+        print("Player Win")
+    elif comp_pick.value == player_pick.value:
+        comp_pick= Draw()
+
+    replay = input("PLay Again?: ")
+    if replay == "y":
+        print()
+        comp_pick= Draw()
+        player_pick = Draw()
+    else:
+        playing = False
