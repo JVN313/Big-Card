@@ -13,11 +13,18 @@ def Card_Creator():
 Card_Creator()
 
 def Draw():
-    return Cards[random.randint(0,9)]
+    return Cards.pop(random.randint(0,len(Cards)))
 
 comp_pick = Draw()
 player_pick = Draw()
+player_wins = 0
+comp_wins =0
 playing = True
+
+def Re_Draw():
+    global comp_pick, player_pick
+    comp_pick = Draw()
+    player_pick = Draw()
 
 def Results():
     print(f"Comp: {comp_pick.name}")
@@ -25,20 +32,33 @@ def Results():
 
 while playing:
     if comp_pick.value > player_pick.value:
+        comp_wins += 1
         Results()
         print()
         print("Comp Win")
     elif player_pick.value > comp_pick.value:
+        player_wins += 1
         Results()
         print()
         print("Player Win")
-    elif comp_pick.value == player_pick.value:
-        comp_pick= Draw()
 
-    replay = input("PLay Again?: ")
-    if replay == "y":
-        print()
-        comp_pick= Draw()
-        player_pick = Draw()
-    else:
+    Re_Draw()
+
+    #elif comp_pick.value == player_pick.value:
+    #    comp_pick= Draw()
+    
+    if len(Cards) == 0:
         playing = False
+        print()
+        print(f"Player Wins: {player_wins}\nComp Wins: {comp_wins}")
+
+    #replay = input("PLay Again?: ")
+    #if replay == "y":
+    #    print()
+    #    comp_pick= Draw()
+    #    player_pick = Draw()
+    #else:
+    #    playing = False
+
+
+# TODO: Fix Draw() on line 16, so the random number generated will always be in range for indexing.
