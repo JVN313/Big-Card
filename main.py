@@ -34,13 +34,13 @@ while playing:
         comp_wins += 1
         Results()
         print()
-        print("Comp Win")
+        print("Comp Win!")
         print()
     elif player_pick.value > comp_pick.value:
         player_wins += 1
         Results()
         print()
-        print("Player Win")
+        print("Player Win!")
         print()
 
     if Cards != []:
@@ -49,6 +49,10 @@ while playing:
         playing = False
         print()
         print(f"Player Wins: {player_wins}\nComp Wins: {comp_wins}")
+        if comp_wins > player_wins:
+            print("Comp Won The Game Sorry :(")
+        else:
+            print("You Won The Game Congrats!")
 
 
-# TODO: Fix Draw() on line 16, so the random number generated will always be in range for indexing.
+# TODO: Add timer so code runs slower ach loop cycle
